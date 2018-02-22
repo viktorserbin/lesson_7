@@ -19,7 +19,7 @@
 Если строка текста длиннее 2-го аргумента, то ее необходимо обрезать по границе
 ближайшего слова и добавить ... иначе возвращать строку без изменений.
  */
-$long_text = "Съешь же ещё этих мягких французских булок да выпей чаю.";
+$long_text = "Съешь же ещё ещё ещё ещё этих мягких французских булок да выпей чаю.";
 //$long_text = "First character's position is 0. Second character position is 1, and so on.";
 $max_length = 24;
 function text_shortener ($txt, $length) {
@@ -29,8 +29,9 @@ function text_shortener ($txt, $length) {
     }
     else {
         $word_array = str_word_count($txt, 1, "АаБбВвГгЇїІіЄєДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя");
+        $end_position = 0;
         foreach ($word_array as $key => $value) {
-            $position = mb_strpos($txt,$value,0,"UTF-8");
+            $position = mb_strpos($txt,$value,$end_position,"UTF-8");
             $end_position = $position + mb_strlen($value,"UTF-8");
             if ($end_position>$length){
                 break;
